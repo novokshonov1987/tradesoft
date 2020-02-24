@@ -1,47 +1,54 @@
-<?php
-/**
- * Создать форму, для ввода двух чисел, после отправки вывести их сумму
- */
-?>
-<form method="post" enctype="multipart/form-data">
-    <label>Первое число: <input type="text" name="forms_fields[number_1]" required></label>
+<script language="javascript">
+    var items=1;
+    function AddItem() {
+        div=document.getElementById("items");
+        button=document.getElementById("add");
+        items++;
+        newitem="<strong>Число " + items + ": </strong>";
+        newitem+="<input type=\"text\" name=\"items[" + items + "]";
+        newitem+="\" size=\"45\"><br>";
+        newnode=document.createElement("span");
+        newnode.innerHTML=newitem;
+        div.insertBefore(newnode,button);
+    }
+</script>
 
-    <input type="submit">
+
+<form  method="post" name="form1">
+    <div ID="items">
+        <strong>Число 1: </strong>
+        <input type="text" name="items[1]" size="45">
+        <br>
+        <input type="button" value="Добавить число" onClick="AddItem();" ID="add">
+    </div>
+    <br>
+    <input name='frm_sbm' type='submit' value='Отправить'/>
 </form>
-
-    <script language='JavaScript' type="text/javascript">
-        var i = 2;
-
-        function ff() {
-            document.getElementById('form_inner').innerHTML = document.getElementById('form_inner').innerHTML +"<input type='text' name='input_no_" + i + "'/><br/>";
-            i++;
-        }
-    </script>
-    <form name='form' id='form' action='#' method='post'>
-        <span name='form_inner' id='form_inner'>
-            <input type='text' name='input_no_1'/>
-        </span>
-        <input name='frm_sbm' type='submit' value='Submit request'/>
-    </form>
-
-    <input type='button' value='Add' onclick="ff()">
 
 <?php
 if (!empty($_POST)) {
-    var_dump($_POST);
-//    if (is_numeric( $_POST['number_1'])
-//        && is_numeric($_POST['number_2'])
-//        && ($_POST['number_1'] > 0)
-//        && ($_POST['number_2'] > 0)
-//    )
-//        {
-//            $summa = $_POST['number_1'] +  $_POST['number_2'];
-//            echo 'Сумма чисел равна: ', ($summa);
-//        } elseif(!is_numeric( $_POST['number_1']) || !is_numeric( $_POST['number_2'])) {
-//        $summa_string = $_POST['number_1'] .  $_POST['number_2'];
-//        echo 'Конкатенация строк: ', ($summa_string);
-//    }
-
+//    echo '<pre>';
+//    var_dump($_POST);
+//    echo '</pre>';
+    $summa = 0;
+    $summa_string = '';
+    $numeric = false;
+    foreach ($_POST['items'] as $item){
+        if (is_numeric($item) && $item > 0){
+            $numeric = true;
+        }
+    }
+    if ($numeric == true){
+        foreach ($_POST['items'] as $item){
+            echo $summa;
+            $summa += $item;
+        }
+    } else {
+        foreach ($_POST['items'] as $item){
+            $summa_string .= $item;
+        }
+    }
+    echo 'сумма равна ', $summa ? $summa : $summa_string;
 }
 
 ?>
