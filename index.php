@@ -1,35 +1,35 @@
 <?php
 
 
-////display_errors(1);
-//error_reporting(E_ALL ^ E_DEPRECATED);
-//ini_set('display_errors', '1');
-//
-//$test = 1/0;
-//
-//echo 'Ok!';
-//
-//return;
-//
-//session_start();
-//
-////unset($_SESSION['name']);
-//if (!empty($_POST)) {
-//    $_SESSION['name'] = $_POST['name'];
-//    session_write_close();
-//}
-//
-//if ($_SESSION['name']) {
-//    echo 'Hi '. $_SESSION['name'] . '!!!';
-//    return;
-//}
+display_errors(1);
+error_reporting(E_ALL ^ E_DEPRECATED);
+ini_set('display_errors', '1');
+
+$test = 1/0;
+
+echo 'Ok!';
+
+return;
+
+session_start();
+
+//unset($_SESSION['name']);
+if (!empty($_POST)) {
+    $_SESSION['name'] = $_POST['name'];
+    session_write_close();
+}
+
+if ($_SESSION['name']) {
+    echo 'Hi '. $_SESSION['name'] . '!!!';
+    return;
+}
 ?>
-<!---->
-<!--<form method="post" enctype="multipart/form-data">-->
-<!--    <label>Имя: <input type="text" name="name" required></label>-->
-<!--    <label>Пароль: <input type="password" name="pass" required></label>-->
-<!--    <input type="submit">-->
-<!--</form>-->
+
+<form method="post" enctype="multipart/form-data">
+    <label>Имя: <input type="text" name="name" required></label>
+    <label>Пароль: <input type="password" name="pass" required></label>
+    <input type="submit">
+</form>
 <?php
 
 $strArr= [
@@ -84,7 +84,7 @@ $iterator = new RecursiveIteratorIterator(new RecursiveArrayIterator($arr));
 $arrOut = iterator_to_array($iterator, false);
 
 echo '<br>';
-echo ' Есть многомерный массив, размерность не известна, элементами могут быть как числа так и массивы. Найти максимальный элемент<br>';
+echo '1. Есть многомерный массив, размерность не известна, элементами могут быть как числа так и массивы. Найти максимальный элемент<br>';
 print_r(max($arrOut));
 echo '<br>';
 
@@ -98,14 +98,15 @@ foreach ($arrOut as $item){
     }
 }
 echo '<br>';
-echo 'Из предыдущего массива сделать одномерный и отфильтровать все нечисловые элементы <br>';
+echo '2. Из предыдущего массива сделать одномерный и отфильтровать все нечисловые элементы <br>';
 var_dump($numeric_array);
+echo '<br>';
 echo '<br>';
 
 
-echo 'Найти медиану предыдущего массива и отбросить все  элементы, которые больше и меньше медианы в 2 раза<br>';
+echo '3. Найти медиану предыдущего массива и отбросить все  элементы, которые больше и меньше медианы в 2 раза<br>';
+sort($numeric_array, SORT_REGULAR );
 $count = count($numeric_array);
-
 if ($count % 2 != 0){
     $med = floor($count/2);
     echo "медиана массива: позиция $med, элемент $numeric_array[$med]";

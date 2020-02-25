@@ -27,20 +27,17 @@
 
 <?php
 if (!empty($_POST)) {
-//    echo '<pre>';
-//    var_dump($_POST);
-//    echo '</pre>';
     $summa = 0;
     $summa_string = '';
-    $numeric = false;
+    $numeric = true;
     foreach ($_POST['items'] as $item){
-        if (is_numeric($item) && $item > 0){
-            $numeric = true;
+        if (!is_numeric($item) || $item < 0){
+            $numeric = false;
+            break;
         }
     }
     if ($numeric == true){
         foreach ($_POST['items'] as $item){
-            echo $summa;
             $summa += $item;
         }
     } else {
