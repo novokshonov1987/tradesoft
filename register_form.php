@@ -1,11 +1,10 @@
 <?php
+session_start();
 
 if (!empty($_POST)) {
-        session_start();
         $_SESSION['name'] = $_POST['name'];
         $_SESSION['email'] = $_POST['email'];
         $_SESSION['phone'] = $_POST['phone'];
-        session_write_close();
 }
 
 if (!empty($_SESSION['name']) && !empty($_SESSION['email']) &&  !empty($_SESSION['phone'])) {
@@ -20,5 +19,3 @@ if (!empty($_SESSION['name']) && !empty($_SESSION['email']) &&  !empty($_SESSION
     </form>
 </table>';
 }
-
-
