@@ -26,7 +26,7 @@
 </form>
 
 <?php
-if (!empty($_POST)) {
+if (!empty($_POST['items'])) {
     $summa = 0;
     $summa_string = '';
     $numeric = true;
